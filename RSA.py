@@ -18,3 +18,8 @@ msg = b'A message for encryption'
 encryptor = PKCS1_OAEP.new(pubKey)
 encrypted = encryptor.encrypt(msg)
 print("Encrypted:", binascii.hexlify(encrypted))
+
+#RSA Desencryption
+decryptor = PKCS1_OAEP.new(keyPair)
+decrypted = decryptor.decrypt(encrypted)
+print('Decrypted:', decrypted)
