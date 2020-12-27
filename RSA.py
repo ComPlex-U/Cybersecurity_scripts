@@ -1,5 +1,5 @@
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
+from crypto.PublicKey import RSA
+from crypto.Cipher import PKCS1_OAEP
 import binascii
 
 keyPair = RSA.generate(3072)
