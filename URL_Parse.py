@@ -1,7 +1,7 @@
 from urllib.parse import urlparse
 import socket
-url="www.facebook.com"
-
+qurl="www.facebook.com"
+url = input('Enter the url site to check: ')
 #o = urlparse('http://www.cwi.nl:80/%7Eguido/Python.html')
 o = urlparse(url)
 o
