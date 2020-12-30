@@ -1,6 +1,7 @@
-from crypto.PublicKey import RSA
-from crypto.Cipher import PKCS1_OAEP
+from Cryptodome.PublicKey import RSA
+from Cryptodome.Cipher import PKCS1_OAEP
 import binascii
+
 
 keyPair = RSA.generate(3072)
 
@@ -14,7 +15,7 @@ privKeyPEM = keyPair.exportKey()
 print(privKeyPEM.decode('ascii'))
 
 #RSA Encryption
-msg = b'A message for encryption'
+msg = b'teste da cifra'
 encryptor = PKCS1_OAEP.new(pubKey)
 encrypted = encryptor.encrypt(msg)
 print("Encrypted:", binascii.hexlify(encrypted))
