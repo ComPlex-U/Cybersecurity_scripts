@@ -42,4 +42,3 @@ for worker in range(1, 8080):
     q.put(worker)
 
 q.join()
-print('Time taken:', time.time() - startTime)
