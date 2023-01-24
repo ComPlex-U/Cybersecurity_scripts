@@ -1,51 +1,36 @@
+import pandas as pd
+from geoip import geolite2
 
-import logging
-import socket
+# Carrega os arquivos de log em um DataFrame do pandas
+http_logs = pd.read_csv("http_logs.log", sep=" ", names=["timestamp", "ip", "status", "url"])
+ssh_logs = pd.read_csv("ssh_logs.log", sep=" ", names=["timestamp", "ip", "status"])
 
-# Configure o endereço e a porta do syslog server
-syslog_server = "10.0.0.1"
-syslog_port = 8090
+# Concatena os dois dataframes
+logs = pd.concat([http_logs, ssh_logs])
 
-# Crie um socket UDP para se conectar ao syslog server
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# Cria as colunas pais e timestamp
+logs["pais"] = None
+logs["timestamp"] = pd.to_datetime(logs["timestamp"], format='%Y-%m-%d %H:%M:%S')
 
-# Crie dicionários para armazenar as informações de acesso
-http_accesses = {}
-ssh_accesses = {}
+#Para cada linha do log, determina o pais de origem
+for index, row in logs.iterrows():
+    match = geolite2.lookup(row["ip"])
+    if match is not None:
+        logs.at[index, "pais"] = match.country
 
-# Receba os logs do syslog server
-while True:
-    data, address = sock.recvfrom(1024)
-    # Verifique se o log é de um serviço HTTP ou SSH
-    if "httpd" in data.decode():
-        # Extraia as informações de IP e código de resposta
-        ip, response_code = data.decode().split()[0], data.decode().split()[8]
-        # Verifique se o código de resposta é igual a "200" (sucesso)
-        if response_code == "200":
-            # Se sim, adicione o acesso ao dicionário
-            if ip in http_accesses:
-                http_accesses[ip] += 1
-            else:
-                http_accesses[ip] = 1
-    elif "sshd" in data.decode():
-        # Extraia as informações de IP e mensagem de log
-        ip, message = data.decode().split()[0], " ".join(data.decode().split()[3:])
-        # Verifique se a mensagem de log indica uma tentativa de login inválida
-        if "invalid" in message.lower():
-            # Se sim, adicione a tentativa de login inválida ao dicionário
-            if ip in ssh_accesses:
-                ssh_accesses[ip] += 1
-            else:
-                ssh_accesses[ip] = 1
+# Seleciona as tentativas de acesso inválidas
+invalid_logs = logs[logs["status"] != "200"]
+valid_logs = logs[logs["status"] == "200"]
 
-# Imprima os resultados
-print("Acessos HTTP:")
-for ip, count in http_accesses.items():
-    print(f"{ip}: {count} acessos")
+# Agrupa os acessos por pais
+access_by_country = logs.groupby("pais").count()["ip"].reset_index()
 
-print("\nTentativas de login SSH inválidas:")
-for ip, count in ssh_accesses.items():
-    print(f"{ip}: {count} tentativas de login inválidas")
+# Imprime os resultados no console
+print("Origem dos acessos:")
+print(access_by_country)
 
-# Feche o socket
-sock.close()
+print("Tentativas de acesso inválidas:")
+print(invalid_logs[["ip", "timestamp", "status", "url"]])
+
+print("Tentativas de acesso válidas:")
+print(valid_logs[["ip", "timestamp", "status", "url"]])
