@@ -2,7 +2,7 @@ import socket
 import select
 import errno
 import sys
-from securechat.crypto_utils import crypto_utils
+from crypto_utils import crypto_utils
 
 class client():
 

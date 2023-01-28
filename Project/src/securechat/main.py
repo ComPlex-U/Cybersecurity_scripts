@@ -1,7 +1,7 @@
 import socket, subprocess,sys
-from securechat.server import server
-from securechat.client import client
-from securechat.crypto_utils import crypto_utils
+from server import server
+from client import client
+from crypto_utils import crypto_utils
 from os import system, name
 
 class SecureChat():
