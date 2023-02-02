@@ -105,9 +105,6 @@ It then breaks this information into lines and prints them to the screen.
 
 
 def active_connections():
-    '''
-    Determine active connections on the machine.
-    '''
     print("Calculating active connections...")
 
     netstat = os.popen("netstat -a").read()
