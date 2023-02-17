@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>app_lpd API documentation</title>
+<title>main API documentation</title>
 <meta name="description" content="Trabalho de LPD
 @author:João Estevão" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -20,7 +20,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>app_lpd</code></h1>
+<h1 class="title">Module <code>main</code></h1>
 </header>
 <section id="section-intro">
 <p>Trabalho de LPD
@@ -868,7 +868,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="app_lpd.active_connections"><code class="name flex">
+<dt id="main.active_connections"><code class="name flex">
 <span>def <span class="ident">active_connections</span></span>(<span>)</span>
 </code></dt>
 <dd>
@@ -916,7 +916,7 @@ It then breaks this information into lines and prints them to the screen.</p>
     print(netstat)</code></pre>
 </details>
 </dd>
-<dt id="app_lpd.authentication"><code class="name flex">
+<dt id="main.authentication"><code class="name flex">
 <span>def <span class="ident">authentication</span></span>(<span>user, passwd)</span>
 </code></dt>
 <dd>
@@ -991,7 +991,7 @@ It then breaks this information into lines and prints them to the screen.</p>
     return is_authenticated</code></pre>
 </details>
 </dd>
-<dt id="app_lpd.chat"><code class="name flex">
+<dt id="main.chat"><code class="name flex">
 <span>def <span class="ident">chat</span></span>(<span>)</span>
 </code></dt>
 <dd>
@@ -1019,7 +1019,7 @@ The function also uses the socket library to establish the connection to the ser
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
-<dt><code>udp</code> or <code>tcp <a title="app_lpd.flood" href="#app_lpd.flood">flood()</a> atack</code></dt>
+<dt><code>udp</code> or <code>tcp <a title="main.flood" href="#main.flood">flood()</a> atack</code></dt>
 <dd>&nbsp;</dd>
 </dl></div>
 <details class="source">
@@ -1249,7 +1249,7 @@ The function also uses the socket library to establish the connection to the ser
             print(&#34;Choose a NUMBER between 1 and 3.&#34;)</code></pre>
 </details>
 </dd>
-<dt id="app_lpd.flood"><code class="name flex">
+<dt id="main.flood"><code class="name flex">
 <span>def <span class="ident">flood</span></span>(<span>)</span>
 </code></dt>
 <dd>
@@ -1276,7 +1276,7 @@ allows the user to start the attack again with the same settings without having 
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
-<dt><code>udp</code> or <code>tcp <a title="app_lpd.flood" href="#app_lpd.flood">flood()</a> atack</code></dt>
+<dt><code>udp</code> or <code>tcp <a title="main.flood" href="#main.flood">flood()</a> atack</code></dt>
 <dd>&nbsp;</dd>
 </dl></div>
 <details class="source">
@@ -1356,7 +1356,7 @@ allows the user to start the attack again with the same settings without having 
                 th.start()</code></pre>
 </details>
 </dd>
-<dt id="app_lpd.generate_pdf"><code class="name flex">
+<dt id="main.generate_pdf"><code class="name flex">
 <span>def <span class="ident">generate_pdf</span></span>(<span>filename, ip_country, title)</span>
 </code></dt>
 <dd>
@@ -1426,7 +1426,7 @@ The function also prints a message that the PDF has been successfully saved.</p>
     print(&#39;\nDone. PDF saved as &#39; + filename+&#39;.&#39;)</code></pre>
 </details>
 </dd>
-<dt id="app_lpd.log_manager"><code class="name flex">
+<dt id="main.log_manager"><code class="name flex">
 <span>def <span class="ident">log_manager</span></span>(<span>)</span>
 </code></dt>
 <dd>
@@ -1444,7 +1444,7 @@ Parameters</p>
 <p>Choose a option to read log files </p>
 <h2 id="returns">Returns</h2>
 <dl>
-<dt><code><a title="app_lpd.generate_pdf" href="#app_lpd.generate_pdf">generate_pdf()</a> with with all logs</code> of <code>failed <a title="app_lpd.login" href="#app_lpd.login">login()</a> attempts, extracts the IP addresses and times</code> of <code>these events and stores them in a list anf geo location</code></dt>
+<dt><code><a title="main.generate_pdf" href="#main.generate_pdf">generate_pdf()</a> with with all logs</code> of <code>failed <a title="main.login" href="#main.login">login()</a> attempts, extracts the IP addresses and times</code> of <code>these events and stores them in a list anf geo location</code></dt>
 <dd>&nbsp;</dd>
 </dl></div>
 <details class="source">
@@ -1623,7 +1623,7 @@ Parameters</p>
             print(&#34;Choose a NUMBER between 1 and 3.&#34;)</code></pre>
 </details>
 </dd>
-<dt id="app_lpd.login"><code class="name flex">
+<dt id="main.login"><code class="name flex">
 <span>def <span class="ident">login</span></span>(<span>)</span>
 </code></dt>
 <dd>
@@ -1665,7 +1665,7 @@ Parameters</p>
     return is_allowed, user</code></pre>
 </details>
 </dd>
-<dt id="app_lpd.port_scanner"><code class="name flex">
+<dt id="main.port_scanner"><code class="name flex">
 <span>def <span class="ident">port_scanner</span></span>(<span>)</span>
 </code></dt>
 <dd>
@@ -1768,14 +1768,14 @@ open ports in target and Time taken
 <ul id="index">
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="two-column">
-<li><code><a title="app_lpd.active_connections" href="#app_lpd.active_connections">active_connections</a></code></li>
-<li><code><a title="app_lpd.authentication" href="#app_lpd.authentication">authentication</a></code></li>
-<li><code><a title="app_lpd.chat" href="#app_lpd.chat">chat</a></code></li>
-<li><code><a title="app_lpd.flood" href="#app_lpd.flood">flood</a></code></li>
-<li><code><a title="app_lpd.generate_pdf" href="#app_lpd.generate_pdf">generate_pdf</a></code></li>
-<li><code><a title="app_lpd.log_manager" href="#app_lpd.log_manager">log_manager</a></code></li>
-<li><code><a title="app_lpd.login" href="#app_lpd.login">login</a></code></li>
-<li><code><a title="app_lpd.port_scanner" href="#app_lpd.port_scanner">port_scanner</a></code></li>
+<li><code><a title="main.active_connections" href="#main.active_connections">active_connections</a></code></li>
+<li><code><a title="main.authentication" href="#main.authentication">authentication</a></code></li>
+<li><code><a title="main.chat" href="#main.chat">chat</a></code></li>
+<li><code><a title="main.flood" href="#main.flood">flood</a></code></li>
+<li><code><a title="main.generate_pdf" href="#main.generate_pdf">generate_pdf</a></code></li>
+<li><code><a title="main.log_manager" href="#main.log_manager">log_manager</a></code></li>
+<li><code><a title="main.login" href="#main.login">login</a></code></li>
+<li><code><a title="main.port_scanner" href="#main.port_scanner">port_scanner</a></code></li>
 </ul>
 </li>
 </ul>
