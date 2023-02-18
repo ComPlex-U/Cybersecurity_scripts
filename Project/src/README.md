@@ -1,11 +1,20 @@
+----Manual----
+
+
 To run this program start by running the following commands:
 
-pip install argon2-cffi
-pip install folium
-pip install reportlab
-pip install python-geoip-geolite2
-pip install scapy
-pip install pycryptodome
+pip install argon2-cffi;
+
+pip install folium;
+
+pip install reportlab;
+
+pip install python-geoip-geolite2;
+
+pip install scapy;
+
+pip install pycryptodome;
+
 
 Then run:python3 main.py or & C:/Users/Win10/AppData/Local/Microsoft/WindowsApps/python3.10.exe c:/Users/Win10/Documents/LPD/project/src/main.py
 
