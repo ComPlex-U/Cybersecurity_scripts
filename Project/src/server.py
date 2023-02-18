@@ -4,7 +4,7 @@ import os
 import os.path
 from _thread import *
 
-host = "192.168.1.108" #Server address
+host = "127.0.0.1" #Server address
 port = 12345 #Port of Server
 thread_count = 0
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
