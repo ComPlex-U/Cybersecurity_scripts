@@ -22,18 +22,23 @@ Then run:python3 main.py or & C:/Users/Win10/AppData/Local/Microsoft/WindowsApps
  ---Menu 1--- 
  
  
-Enter the username:
+	Enter the username:
 
-Enter the password: 
+	Enter the password: 
 
-Choose a option:
+	Choose a option:
 
-[1]->Port Scan.
-[2]->Connections active.
-[3]->Secure messaging service.
-[4]->Analyze and process log files.
-[5]->flood DOS atack.
-[x]->Exit.
+	[1]->Port Scan.
+
+	[2]->Connections active.
+
+	[3]->Secure messaging service.
+
+	[4]->Analyze and process log files.
+
+	[5]->flood DOS atack.
+
+	[x]->Exit.
 
 
 
